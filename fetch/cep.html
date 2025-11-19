@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cep</title>
+</head>
+<body>
+
+    <div>
+        <p id="cep">Cep:</p>
+        <p id="localidade">Localicalidade:</p>
+
+
+    </div>
+
+    <div>
+        <p id="cep">Cep:</p>
+        <input type="text" id="digitado">
+    </div>
+    
+    <script>
+        
+        let cep=document.querySelector("#cep")
+        let localidade=document.querySelector("#localidade")
+
+
+        let digitado=document.querySelector("digitado")
+
+        //infomando a URL da API
+        fetch("https://viacep.com.br/ws/01001000/json/")
+        //recebe os dados e transforma ele em JSON
+        //metodo para receber os dados da API
+        .then(response => response.json())
+        //recebe oa dados já convertidos em JSON
+        // data são todos os dados fornecidos da api
+        .then(data=>{
+            console.log(data)
+
+            //incluindo os valores de cada dado correspondente
+            //o data.cep é campo da api  que quero utilizar,deve ser preenchido nesse formato
+            cep.innerHTML += data.cep
+            localidade.innerHTML += data.localidade
+        })
+            
+          
+    </script>
+
+</body>
+</html>
